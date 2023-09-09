@@ -1,0 +1,53 @@
+@import "../../styles/variables.scss";
+.pageRepoSearch{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: $colorBackgroundWhite;
+    gap: $space-m;
+}
+
+.titleContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    width: fit-content;
+    gap: $space-m;
+
+    margin-top: 1%;
+    .repoSearchTitle{
+        color: $fontColorPrimary;
+        font-size: 2em;
+        font-weight: bold;
+    }
+    .repoSearchSubtitle{
+        font-size: 1em;
+        color: $fontColorSecondary;
+    }
+}
+
+.inputsContainer{
+    width: 1200px;
+    .orgSearch{
+        border-radius: 15px;
+        width: 100%;
+    }
+}
+
+.repoList{
+    display: flex;
+    width: 1200px;
+    flex-direction: row;
+    gap: $space-s;
+    flex-grow: 0;
+    flex-wrap: wrap;
+    .repoCard{
+        width: 30%;
+        color: $fontColorPrimary;
+        flex-basis: auto;
+        flex-shrink: 1;
+        flex-grow: 2;
+    }
+}
