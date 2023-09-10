@@ -1,8 +1,6 @@
-import classNames from 'classnames';
-import Text from 'components/Text';
-import React, { Children } from 'react';
-import Button from 'components/Button';
-import './card.css';
+import classNames from "classnames";
+import Text from "components/Text";
+import "./card.css";
 
 export type CardProps = {
   /** Дополнительный classname */
@@ -34,7 +32,7 @@ const Card: React.FC<CardProps> = (props) => {
     onClick,
     actionSlot,
   } = props;
-  const cardClasses = classNames('card', className);
+  const cardClasses = classNames("card", className);
   return (
     <div className={cardClasses} onClick={onClick}>
       <img className="cardImage" src={image} alt="oopsie"></img>
@@ -42,7 +40,7 @@ const Card: React.FC<CardProps> = (props) => {
         <div className="cardDesription">
           {captionSlot && (
             <Text
-              className={'caption'}
+              className={"caption"}
               children={captionSlot}
               color="secondary"
               maxLines={1}
@@ -50,21 +48,25 @@ const Card: React.FC<CardProps> = (props) => {
             ></Text>
           )}
           <Text
-            className={'title'}
+            className={"title"}
             children={title}
             maxLines={2}
             view="p-20"
           ></Text>
           <Text
-            className={'subtitle'}
+            className={"subtitle"}
             children={subtitle}
             maxLines={3}
             view="p-16"
             color="secondary"
           ></Text>
         </div>
-        <div className={'cardFooter'}>
-            {contentSlot && <div className='footerContent'><p>{contentSlot}</p></div>}
+        <div className={"cardFooter"}>
+          {contentSlot && (
+            <div className="footerContent">
+              <p>{contentSlot}</p>
+            </div>
+          )}
           {actionSlot}
         </div>
       </div>

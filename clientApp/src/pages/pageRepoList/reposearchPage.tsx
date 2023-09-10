@@ -27,6 +27,7 @@ const SearchPage: React.FC = () => {
   };
 
   const getNextPage = async () => {
+    const nextPage = currentPage + 1;
     const newData = await fetchRepos("google", nextPage);
     setRepos((prevRepos) => [...prevRepos, ...newData]);
     setCurrentPage(currentPage + 1);
@@ -58,29 +59,29 @@ const SearchPage: React.FC = () => {
           />
         </div>
         <div className="companyInfo">COM</div>
-        <InfiniteScroll
-          className={styles.repoList}
-          dataLength={repoList.length}
-          next={getNextPage}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-        >
-          {repoList.map((repo) => (
-            <Card
-              key={repo.id}
-              className={styles.repoCard}
-              captionSlot={repo.lastUpdate}
-              title={repo.name}
-              subtitle={
-                repo.description !== null
-                  ? repo.description
-                  : "Owner did not leave any description"
-              }
-              image={repo.avatar_url}
-              onClick={() => handleClick(repo.id, repo.owner)}
-            ></Card>
-          ))}
-        </InfiniteScroll>
+          <InfiniteScroll
+            className={styles.repoList}
+            dataLength={repoList.length}
+            next={getNextPage}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+          >
+            {repoList.map((repo) => (
+              <Card
+                key={repo.id}
+                className={styles.repoCard}
+                captionSlot={repo.lastUpdate}
+                title={repo.name}
+                subtitle={
+                  repo.description !== null
+                    ? repo.description
+                    : "Owner did not leave any description"
+                }
+                image={repo.avatar_url}
+                onClick={() => handleClick(repo.id, repo.owner)}
+              ></Card>
+            ))}
+          </InfiniteScroll>
       </div>
     </div>
   );
