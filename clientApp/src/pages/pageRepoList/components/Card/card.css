@@ -128,6 +128,10 @@ button.disabled:hover {
   font-style: normal;
   font-weight: 500;
 }
+.subtitle{
+  text-align: start;
+  margin: 0;
+}
 .cardFooter {
   font-family: Roboto;
   display: flex;
