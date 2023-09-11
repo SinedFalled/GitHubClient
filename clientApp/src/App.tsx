@@ -1,19 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import Header from "components/pageHeader/header";
 import SearchPage from "pages/pageRepoList/reposearchPage";
-import { useState } from "react";
+import RepoPage from "pages/repoPage";
 
 function App() {
-  const [curentPage, displayPage] = useState("search");
   return (
     <BrowserRouter>
       <Header classname={"header"}></Header>
       <Routes>
-        {/* <Header classname="headerMain"></Header> */}
-        {curentPage === "search" && (
-          <Route path="/" element={<SearchPage></SearchPage>} />
-        )}
+        <Route path="/" element={<SearchPage/>} />
+        <Route path="/repo/:owner/:name" element={<RepoPage/>}/>
       </Routes>
     </BrowserRouter>
   );

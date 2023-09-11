@@ -1,0 +1,44 @@
+@import "../../styles/variables.scss";
+
+:root{
+    min-height: 100vh;
+}
+.repoPage {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xl, 24px);
+
+    width: 1200px;
+    margin-top: 40px;
+
+    background-color: $colorBackgroundWhite;
+    font-family: Roboto;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px;
+}
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: $space-m;
+    text-align: start;
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 0;
+    }
+}
+
+.infoContainer {
+    display: flex;
+    width: 1093px;
+    height: 367px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-l;
+}
