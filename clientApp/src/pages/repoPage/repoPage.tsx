@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import arrowIcon from "assets/arrow-right.svg";
 import classNames from "classnames";
-import starsIcon from 'assets/stars.svg';
-import forksIcon from 'assets/forks.svg';
-import wathersIcon from 'assets/forks.svg';
+import starsIcon from "assets/stars.svg";
+import forksIcon from "assets/forks.svg";
+import wathersIcon from "assets/forks.svg";
 
 interface RepoData {
   name: string;
@@ -16,6 +16,7 @@ interface RepoData {
   stars: number;
   topics: string[];
   conributors: any[];
+  languages: any;
 }
 
 const RepoPage: React.FC = () => {
@@ -34,6 +35,9 @@ const RepoPage: React.FC = () => {
       const resultContributors = await axios.get(
         `https://api.github.com/repos/${owner}/${name}/contributors`
       );
+      const resultLanguages = await axios.get(
+        `https://api.github.com/repos/${owner}/${name}/languages`
+      );
       const data: RepoData = {
         name: result.data.full_name,
         avatar: result.data.owner.avatar_url,
@@ -42,6 +46,7 @@ const RepoPage: React.FC = () => {
         topics: resultTopics.data.names,
         stars: result.data.stargazers_count,
         conributors: resultContributors.data,
+        languages: resultLanguages.data,
       };
       return data;
     };
@@ -62,9 +67,8 @@ const RepoPage: React.FC = () => {
       setInfo(initialData);
       await fetchReadme();
     })();
-    console.log(currentRepo);
   }, [owner, name]);
-
+  console.log(currentRepo?.languages, "8787")
   return (
     <div className={styles.repoPage}>
       <div className={styles.title}>
@@ -89,22 +93,45 @@ const RepoPage: React.FC = () => {
         <div className={styles.activity}>
           {" "}
           {/* активность, звезды, форки */}
-          <div className={styles.activityElement}><img src={forksIcon}></img><p>{currentRepo?.forksC} forks</p></div>
-          <div className={styles.activityElement}><img src={wathersIcon}></img><p>{currentRepo?.watchersC} watchers</p></div>
-          <div className={styles.activityElement}><img src={starsIcon}></img><p>{currentRepo?.stars} stars</p></div>
+          <div className={styles.activityElement}>
+            <img src={forksIcon}></img>
+            <p>{currentRepo?.forksC} forks</p>
+          </div>
+          <div className={styles.activityElement}>
+            <img src={wathersIcon}></img>
+            <p>{currentRepo?.watchersC} watchers</p>
+          </div>
+          <div className={styles.activityElement}>
+            <img src={starsIcon}></img>
+            <p>{currentRepo?.stars} stars</p>
+          </div>
         </div>
         <section className={styles.projectDetails}>
           {" "}
           {/* команда, языки */}
           <div className={styles.contributors}>
-            <div className={styles.contributorsTitle}>Contributors <div className={styles.contributorsCount}>{currentRepo?.conributors.length}</div></div>
+            <div className={styles.contributorsTitle}>
+              Contributors{" "}
+              <div className={styles.contributorsCount}>
+                {currentRepo?.conributors.length}
+              </div>
+            </div>
             <ul className={styles.contributorsList}>
-              {currentRepo?.conributors.length !== 0 ? currentRepo?.conributors.map((conributor) => (
-                <li className={styles.conributor}>
-                    <img className={styles.contributorAvatar} src={conributor.avatar_url}></img>
-                  {conributor.login}
-                </li>
-              )) : <div className={styles.contributorsNone}>No conributors found</div>}
+              {currentRepo?.conributors.length !== 0 ? (
+                currentRepo?.conributors.map((conributor) => (
+                  <li className={styles.conributor}>
+                    <img
+                      className={styles.contributorAvatar}
+                      src={conributor.avatar_url}
+                    ></img>
+                    {conributor.login}
+                  </li>
+                ))
+              ) : (
+                <div className={styles.contributorsNone}>
+                  No conributors found
+                </div>
+              )}
             </ul>
           </div>
         </section>
