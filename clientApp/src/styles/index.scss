@@ -2,6 +2,10 @@
 @import './variables.scss';
 div#root{
   min-height: 100vh;
+  a{
+    color: inherit;
+    
+  }
 }
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
