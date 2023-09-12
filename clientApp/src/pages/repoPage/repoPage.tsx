@@ -10,7 +10,9 @@ interface RepoData {
   avatar: string;
   forksC: number;
   watchersC: number;
+  stars: number;
   topics: string[];
+  conributors: any;
 }
 
 const RepoPage: React.FC = () => {
@@ -26,12 +28,17 @@ const RepoPage: React.FC = () => {
       const resultTopics = await axios.get(
         `https://api.github.com/repos/${owner}/${name}/topics`
       );
+      const resultContributors = await axios.get(
+        `https://api.github.com/repos/${owner}/${name}/contributors`
+      );
       const data: RepoData = {
         name: result.data.full_name,
         avatar: result.data.owner.avatar_url,
         forksC: result.data.forks_count,
         watchersC: result.data.watchers_count,
         topics: resultTopics.data.names,
+        stars: result.data.stargazers_count,
+        conributors: resultContributors.data,
       };
       return data;
     };
@@ -71,15 +78,37 @@ const RepoPage: React.FC = () => {
               <div className={styles.topic}>{topic}</div>
             ))
           ) : (
-            <div className = {classNames(styles.topicNone, styles.topic)}>No topics specified</div>
+            <div className={classNames(styles.topicNone, styles.topic)}>
+              No topics specified
+            </div>
           )}
         </div>
         <div className={styles.activity}>
+          {" "}
+          {/* активность, звезды, форки */}
           <p>{currentRepo?.forksC} forks</p>
           <p>{currentRepo?.watchersC} watchers</p>
+          <p>{currentRepo?.stars} stars</p>
         </div>
+        <section className={styles.projectDetails}>
+          {" "}
+          {/* команда, языки */}
+          <div className={styles.contributors}>
+            Contributors
+            <ul className={styles.contributorsList}>
+              {currentRepo?.conributors.map((conributor) => (
+                <li className={styles.conributor}>
+                    <img className={styles.contributorAvatar} src={conributor.avatar_url}></img>
+                  {conributor.login}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </div>
       <section className={styles.readme}>
+        {" "}
+        {/* напрочь сломаный readme */}
         <div className={styles.readmeTitle}>Readme.md</div>
         <div className={styles.readmeContent}>
           <pre className={styles.readmeText}>{readmeContent}</pre>

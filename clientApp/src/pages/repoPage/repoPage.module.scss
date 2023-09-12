@@ -75,9 +75,51 @@
             font-weight: 700;
             line-height: normal;
         }
-        .topicNone{
+        .topicNone {
             color: rgb(204, 41, 0);
             background: #dadada;
+        }
+    }
+    .projectDetails {
+        display: flex;
+        height: 200px;
+        align-items: flex-start;
+        gap: 80px;
+        flex-shrink: 0;
+        .contributors {
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 22px;
+        }
+        .contributorsList {
+            display: flex;
+            overflow-x: auto;
+            &::-webkit-scrollbar {
+                width: 0;
+            }
+            padding: 0%;
+            max-height: 200px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: $space-xxs;
+            border-bottom: 1px solid #d9d9d9;
+            li {
+                display: flex;
+                gap: $space-xxs;
+                align-items: center;
+                &::marker {
+                    content: none;
+                }
+                font-size: 16px;
+                line-height: 20px;
+                .contributorAvatar {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 32px;
+                    border: 1px solid #ecebeb;
+                }
+            }
         }
     }
 }
