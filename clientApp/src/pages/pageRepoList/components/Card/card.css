@@ -108,11 +108,13 @@ button.disabled:hover {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: var(--space-xxs, 8px);
+  gap: var(--space-xs, 8px);
   align-self: stretch;
 }
 .caption {
+  margin: 0;
   font-weight: 500;
+  font-size: 14px;
   
 }
 .title {

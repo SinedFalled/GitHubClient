@@ -4,6 +4,7 @@ import Input from "./components/Input/Input";
 import Card from "./components/Card/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
+import starsIcon from "assets/stars.svg";
 import { useNavigate } from "react-router-dom";
 
 interface RepoData {
@@ -14,6 +15,7 @@ interface RepoData {
   owner: string;
   description: string;
   lastUpdate: string;
+  stars: number;
 }
 
 const SearchPage: React.FC = () => {
@@ -32,6 +34,7 @@ const SearchPage: React.FC = () => {
       owner: raw.owner.login,
       description: raw.description,
       lastUpdate: raw.updated_at,
+      stars: raw.stargazers_count,
     }));
     return data;
   };
@@ -58,6 +61,10 @@ const SearchPage: React.FC = () => {
     },
     [navigate]
   );
+  const findUpdatedate = (date: string) => {
+    const updateDate = new Date(Date.parse(date));
+    return `${updateDate.getDay()}.${updateDate.getMonth()}.${updateDate.getFullYear()}`;
+  };
 
   return (
     <div>
@@ -89,7 +96,12 @@ const SearchPage: React.FC = () => {
             <Card
               key={repo.shortName}
               className={styles.repoCard}
-              captionSlot={repo.lastUpdate}
+              captionSlot={
+                <div>
+                  <img src={starsIcon} alt="Stars:"></img> {repo.stars} Updated:
+                  {findUpdatedate(repo.lastUpdate)}
+                </div>
+              }
               title={repo.shortName}
               subtitle={
                 repo.description !== null
