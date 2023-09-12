@@ -1,0 +1,95 @@
+:root {
+  --button-primary-bg: #518581;
+  --button-primary-text: #ffffff;
+  --button-primary-bg-hover: #86aaa7;
+  --button-primary-bg-active: #487773;
+  --button-primary-bg-disabled: #d9d9d9;
+  --input-bg: #ffffff;
+  --card-bg: white;
+  --card-image-bg: #d9d9d9;
+  --border-radius: 0;
+  --space-xl: 24px;
+  --space-l: 20px;
+  --space-m: 16px;
+  --space-s: 14px;
+  --space-xs: 12px;
+  --space-xxs: 8px;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../styles/Roboto/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../styles/Roboto/Roboto-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../styles/Roboto/Roboto-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.Dropdownlist {
+  width: min-content;
+}
+.dropdownInput {
+  outline: none;
+  border: none;
+  display: flex;
+  width: 372px;
+  height: 52px;
+  background-color: var(--input-bg);
+  padding: var(--space-s, 14px) var(--space-xs, 12px);
+  align-items: center;
+  gap: var(--space-xxs, 8px);
+  flex-shrink: 0;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+.dropdownInput::placeholder {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+  color: #afadb5;
+  font-family: Roboto;
+}
+.dropdownInput:hover {
+  cursor: pointer;
+}
+.dropdownInput:focus {
+  border-radius: var(--border-radius, 0px);
+  outline: 1px solid var(--input-border-focus, #518581);
+  background: var(--input-bg-focus, #fff);
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: var(--space-xxs);
+  background-color: var(--input-bg);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+.option {
+  padding: var(--space-s, 14px) var(--space-xs, 12px);
+  justify-content: center;
+  align-self: stretch;
+  width: 100%;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+.dropdownInput:disabled{
+    color: #00000033;
+}

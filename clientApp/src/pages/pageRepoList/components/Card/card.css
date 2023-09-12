@@ -1,0 +1,157 @@
+:root {
+  --button-primary-bg: #518581;
+  --button-primary-text: #ffffff;
+  --button-primary-bg-hover: #86aaa7;
+  --button-primary-bg-active: #487773;
+  --button-primary-bg-disabled: #d9d9d9;
+  --card-bg: white;
+  --card-image-bg: #d9d9d9;
+  --border-radius: 0;
+  --space-xl: 24px;
+  --space-l: 20px;
+  --space-m: 16px;
+  --space-s: 14px;
+  --space-xs: 12px;
+  --space-xxs: 8px;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../styles/Roboto/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../styles/Roboto/Roboto-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../styles/Roboto/Roboto-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 52px;
+  gap: var(--space-xxs, 8px);
+  padding: var(--space-s, 14px) var(--space-l, 20px);
+  background: var(--button-primary-bg);
+  border: none;
+  outline: none;
+  color: var(--button-primary-text);
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+.button > * {
+  font-family: Roboto;
+}
+.button:hover {
+  background-color: var(--button-primary-bg-hover);
+}
+.button:active {
+  background-color: var(--button-primary-bg-active);
+}
+.loading:hover {
+  background-color: var(--button-primary-bg);
+}
+button.disabled,
+button.disabled:hover {
+  background-color: var(--button-primary-bg-disabled);
+}
+.buttonLoader {
+  color: white;
+  fill: white;
+}
+.card {
+  display: inline-flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: var(--space-xl, 0px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xl, 24px);
+  border-radius: var(--border-radius, 0px);
+  background-color: var(--card-bg);
+}
+.card:hover {
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+.cardImage {
+  width: 100%;
+  flex-shrink: 0;
+  background: var(--card-image-bg, #d9d9d9);
+}
+.cardBody {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 0px var(--space-xs, 12px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-l, 20px);
+}
+.cardDesription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-xs, 8px);
+  align-self: stretch;
+}
+.caption {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  
+}
+.title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  text-align: start;
+  margin: 0;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  font-style: normal;
+  font-weight: 500;
+}
+.subtitle{
+  text-align: start;
+  margin: 0;
+}
+.cardFooter {
+  font-family: Roboto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-xxs, 8px);
+  align-self: stretch;
+}
+.footerContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footerContent > p {
+  color: var(--text-primary, #000);
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+}

@@ -1,0 +1,41 @@
+@import "../../styles/variables.scss";
+.headerMain {
+    z-index: 100;
+    position: sticky;
+    top: 0;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $colorBackgroundWhite;
+    border-bottom: 2px solid #d9d9d9;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    div {
+        width: 33%;
+    }
+    .headerLogo {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: $space-xs;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+    }
+    .linkBar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        p {
+            cursor: pointer;
+        }
+        p:hover {
+            text-decoration: underline;
+        }
+    }
+    @media screen and (min-width: 1280px) {
+        height: 64px;
+    }
+}
