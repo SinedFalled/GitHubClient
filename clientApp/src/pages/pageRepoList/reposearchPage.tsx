@@ -25,7 +25,7 @@ const SearchPage: React.FC = () => {
       https://api.github.com/orgs/${
         orgName !== undefined ? orgName : "github"
       }/repos?page=${page}`);
-    const data: RepoData[] = result.data.map((raw: any) => ({
+    const data: RepoData[] = result.data.map((raw) => ({
       id: raw.id,
       shortName: raw.name,
       avatar_url: raw.owner.avatar_url,

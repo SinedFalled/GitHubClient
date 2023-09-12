@@ -1,7 +1,8 @@
 import styles from "./repoPage.module.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import arrowIcon from 'assets/arrow-right.svg'
 
 interface RepoData {
   name: string;
@@ -51,6 +52,7 @@ const RepoPage: React.FC = () => {
   return (
     <div className={styles.repoPage}>
       <div className={styles.title}>
+        <NavLink to={'/'}><img src={arrowIcon} alt=""></img></NavLink>
         <img className={styles.avatar} src={currentRepo?.avatar} alt="A" />
         {currentRepo?.name}
       </div>
