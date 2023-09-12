@@ -2,13 +2,15 @@ import styles from "./repoPage.module.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import arrowIcon from 'assets/arrow-right.svg'
+import arrowIcon from "assets/arrow-right.svg";
+import classNames from "classnames";
 
 interface RepoData {
   name: string;
   avatar: string;
   forksC: number;
   watchersC: number;
+  topics: string[];
 }
 
 const RepoPage: React.FC = () => {
@@ -21,15 +23,18 @@ const RepoPage: React.FC = () => {
       const result = await axios.get(
         `https://api.github.com/repos/${owner}/${name}`
       );
+      const resultTopics = await axios.get(
+        `https://api.github.com/repos/${owner}/${name}/topics`
+      );
       const data: RepoData = {
         name: result.data.full_name,
         avatar: result.data.owner.avatar_url,
         forksC: result.data.forks_count,
         watchersC: result.data.watchers_count,
+        topics: resultTopics.data.names,
       };
       return data;
     };
-
     const fetchReadme = async () => {
       const result = await axios.get(
         `https://api.github.com/repos/${owner}/${name}/readme`,
@@ -47,17 +52,28 @@ const RepoPage: React.FC = () => {
       setInfo(initialData);
       await fetchReadme();
     })();
+    console.log(currentRepo);
   }, [owner, name]);
 
   return (
     <div className={styles.repoPage}>
       <div className={styles.title}>
-        <NavLink to={'/'}><img src={arrowIcon} alt=""></img></NavLink>
+        <NavLink to={"/"}>
+          <img src={arrowIcon} alt=""></img>
+        </NavLink>
         <img className={styles.avatar} src={currentRepo?.avatar} alt="A" />
         {currentRepo?.name}
       </div>
       <div className={styles.infoContainer}>
-        <div className={styles.topics}><div className={styles.topic}>Test</div></div>
+        <div className={styles.topics}>
+          {currentRepo?.topics.length !== 0 ? (
+            currentRepo?.topics.map((topic) => (
+              <div className={styles.topic}>{topic}</div>
+            ))
+          ) : (
+            <div className = {classNames(styles.topicNone, styles.topic)}>No topics specified</div>
+          )}
+        </div>
         <div className={styles.activity}>
           <p>{currentRepo?.forksC} forks</p>
           <p>{currentRepo?.watchersC} watchers</p>

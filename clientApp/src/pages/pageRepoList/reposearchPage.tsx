@@ -25,7 +25,7 @@ const SearchPage: React.FC = () => {
       https://api.github.com/orgs/${
         orgName !== undefined ? orgName : "github"
       }/repos?page=${page}`);
-    const data: RepoData[] = result.data.map((raw) => ({
+    const data: RepoData[] = result.data.map((raw: any) => ({
       id: raw.id,
       shortName: raw.name,
       avatar_url: raw.owner.avatar_url,
@@ -83,7 +83,7 @@ const SearchPage: React.FC = () => {
           dataLength={repoList.length}
           next={getNextPage}
           hasMore={true}
-          loader={<div>Loading...</div>}
+          loader={<h4>Loading...</h4>}
         >
           {repoList.map((repo) => (
             <Card
