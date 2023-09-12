@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import arrowIcon from "assets/arrow-right.svg";
 import classNames from "classnames";
+import starsIcon from 'assets/stars.svg';
+import forksIcon from 'assets/forks.svg';
+import wathersIcon from 'assets/forks.svg';
 
 interface RepoData {
   name: string;
@@ -12,7 +15,7 @@ interface RepoData {
   watchersC: number;
   stars: number;
   topics: string[];
-  conributors: any;
+  conributors: any[];
 }
 
 const RepoPage: React.FC = () => {
@@ -86,22 +89,22 @@ const RepoPage: React.FC = () => {
         <div className={styles.activity}>
           {" "}
           {/* активность, звезды, форки */}
-          <p>{currentRepo?.forksC} forks</p>
-          <p>{currentRepo?.watchersC} watchers</p>
-          <p>{currentRepo?.stars} stars</p>
+          <div className={styles.activityElement}><img src={forksIcon}></img><p>{currentRepo?.forksC} forks</p></div>
+          <div className={styles.activityElement}><img src={wathersIcon}></img><p>{currentRepo?.watchersC} watchers</p></div>
+          <div className={styles.activityElement}><img src={starsIcon}></img><p>{currentRepo?.stars} stars</p></div>
         </div>
         <section className={styles.projectDetails}>
           {" "}
           {/* команда, языки */}
           <div className={styles.contributors}>
-            Contributors
+            <div className={styles.contributorsTitle}>Contributors <div className={styles.contributorsCount}>{currentRepo?.conributors.length}</div></div>
             <ul className={styles.contributorsList}>
-              {currentRepo?.conributors.map((conributor) => (
+              {currentRepo?.conributors.length !== 0 ? currentRepo?.conributors.map((conributor) => (
                 <li className={styles.conributor}>
                     <img className={styles.contributorAvatar} src={conributor.avatar_url}></img>
                   {conributor.login}
                 </li>
-              ))}
+              )) : <div className={styles.contributorsNone}>No conributors found</div>}
             </ul>
           </div>
         </section>

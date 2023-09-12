@@ -38,6 +38,7 @@
 }
 .input {
   border-radius: inherit;
+  box-sizing: border-box;
   outline: none;
   border: none;
   display: flex;

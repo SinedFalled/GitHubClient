@@ -14,6 +14,7 @@
         width: 33%;
     }
     .headerLogo {
+        cursor: pointer;
         display: flex;
         align-items: center;
         gap: $space-xs;
@@ -27,10 +28,12 @@
         align-items: center;
         justify-content: center;
         font-size: 18px;
-        p:hover{
+        p {
+            cursor: pointer;
+        }
+        p:hover {
             text-decoration: underline;
         }
-
     }
     @media screen and (min-width: 1280px) {
         height: 64px;
