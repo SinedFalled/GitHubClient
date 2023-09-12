@@ -4,7 +4,6 @@ import Input from "./components/Input/Input";
 import Card from "./components/Card/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
-import RepoPage from "pages/repoPage";
 import { useNavigate } from "react-router-dom";
 
 interface RepoData {
@@ -28,7 +27,6 @@ const SearchPage: React.FC = () => {
       }/repos?page=${page}`);
     const data: RepoData[] = result.data.map((raw: any) => ({
       id: raw.id,
-      name: raw.full_name,
       shortName: raw.name,
       avatar_url: raw.owner.avatar_url,
       owner: raw.owner.login,
@@ -85,14 +83,14 @@ const SearchPage: React.FC = () => {
           dataLength={repoList.length}
           next={getNextPage}
           hasMore={true}
-          loader={<h4>Loading...</h4>}
+          loader={<div>Loading...</div>}
         >
           {repoList.map((repo) => (
             <Card
-              key={repo.name}
+              key={repo.shortName}
               className={styles.repoCard}
               captionSlot={repo.lastUpdate}
-              title={repo.name}
+              title={repo.shortName}
               subtitle={
                 repo.description !== null
                   ? repo.description
